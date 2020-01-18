@@ -28,7 +28,6 @@ class App extends React.Component {
     console.log(url)
 
     e.preventDefault();
-    //if
     if (this.state.queryText.length > 0) {
       this.setState({isLoading: true})
       fetch(url)
@@ -41,8 +40,6 @@ class App extends React.Component {
         url: result.url,
         author: result.author
       })))
-//.then
-//then
       .then(posts => {
         this.setState({
           results: posts,
@@ -71,20 +68,20 @@ render(){
   
      return (
       <div className = "App">
+        <heading>
+        <h1>Hacker News App!</h1>
         <form>
-        <input placeholder = 'search by title' onChange={(e) => this.onChange(e)}/>
-        <button onClick = {this.onSubmitTitle}>Click to Search by Title</button>
-        <input placeholder = 'search by author' onChange2={(e) => this.onChange2(e)}/>
-        <button onClick = {this.onSubmitAuthor}>Click to Search by Author</button>
-        
-        {this.state.results.map(result => 
-        <>
-        <h1>{result.title}</h1>
-        <h2>{result.author}</h2>
-        <a href={result.url}>{result.url}</a>
-        </>
-        )}
+        <input placeholder = 'Search News Articles by Title' onChange={(e) => this.onChange(e)}/>
+        <button onClick = {this.onSubmitTitle}>Click to Search Hacker News!</button>
         </form>
+        </heading>
+        {this.state.results.map(result => 
+          <div id='articleList'>
+          <h2>{result.title}</h2>
+          <h3>{result.author}</h3>
+          <a href={result.url} target="_blank">{result.url}</a>
+          </div>
+        )}
       </div>
     )}
 }
